@@ -78,7 +78,7 @@ class ImagickLayerable {
 
     }
 
-    public function getFinalResult($imageMagickCompositeMethod){
+    public function getFinalResult($imageMagickCompositeMethod="none"){
 
         //print_r($this->layers);
         //$this->canvas = $this->layers[$this->layerZIndex[4]];
@@ -92,7 +92,12 @@ class ImagickLayerable {
 
             //$image = $this->layers[$this->layerZIndex[$i]];
             //$image->writeimage(("../cache/test_image_{$this->layerZIndex[$i]}_{$i}.png"));
-            $this->canvas->compositeimage($this->layers[$this->layerZIndex[$i]], $imageMagickCompositeMethod,0,0);
+            if(strtolower($imageMagickCompositeMethod) != "none"){
+                $this->canvas->compositeimage($this->layers[$this->layerZIndex[$i]], $imageMagickCompositeMethod,$this->layerOptions[$this->layerZIndex[$i]]["x"],$this->layerOptions[$this->layerZIndex[$i]]["y"]);
+            }
+            else{
+                $this->canvas->compositeimage($this->layers[$this->layerZIndex[$i]], $this->layerOptions[$this->layerZIndex[$i]]["composite"],$this->layerOptions[$this->layerZIndex[$i]]["x"],$this->layerOptions[$this->layerZIndex[$i]]["y"]);
+            }
         }
 
         return $this->canvas;
