@@ -1,0 +1,1 @@
+This PHP class gives Layering capability to the Imagick PHP Extension.
