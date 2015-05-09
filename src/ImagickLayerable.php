@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-class BenspokeLayerable {
+class ImagickLayerable {
 
     private $layers;
     private $layerZIndex;
